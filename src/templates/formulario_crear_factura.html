@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block titulo %}Crear Factura{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <h2 class="text-center">Crear Factura</h2>
+    <form action="/guardar_factura" method="POST">
+        <div class="form-group">
+            <label for="cliente">Cliente:</label>
+            <select class="form-control" id="cliente" name="cliente_id" required>
+                <option value="">Seleccione un Cliente</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente.id_cliente }}">{{ cliente.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="vendedor">Vendedor:</label>
+            <select class="form-control" id="vendedor" name="vendedor_id" required>
+                <option value="">Seleccione un Vendedor</option>
+                {% for vendedor in vendedores %}
+                    <option value="{{ vendedor.id_vendedor }}">{{ vendedor.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="producto">Producto:</label>
+            <select class="form-control" id="producto" name="producto_id" required>
+                <option value="">Seleccione un Producto</option>
+                {% for producto in productos %}
+                    <option value="{{ producto.id_producto }}" data-precio="{{ producto.precio }}">
+                        {{ producto.nombre }} - ${{ producto.precio }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="total">Total:</label>
+            <input type="text" class="form-control" id="total" name="total" readonly>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Generar Factura</button>
+    </form>
+</div>
+
+<script>
+document.getElementById("producto").addEventListener("change", calcularTotal);
+document.getElementById("cantidad").addEventListener("input", calcularTotal);
+
+function calcularTotal() {
+    let producto = document.getElementById("producto");
+    let cantidad = document.getElementById("cantidad").value;
+    let precio = producto.options[producto.selectedIndex].getAttribute("data-precio");
+
+    if (precio && cantidad) {
+        document.getElementById("total").value = (cantidad * precio).toFixed(2);
+    } else {
+        document.getElementById("total").value = "";
+    }
+}
+</script>
+
+{% endblock %}

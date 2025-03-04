@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <h2 class="text-center">Lista de Clientes</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>      
+                <th scope="col">Teléfono</th>   
+                <th scope="col">Dirección</th>      
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Juan Pérez</td>
+                <td>juan@example.com</td>
+                <td>3001234567</td>
+                <td>Calle 123, Ciudad</td>
+                <td>
+                    <button class="btn btn-warning btn-sm">Editar</button>
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Ana López</td>
+                <td>ana@example.com</td>
+                <td>3127654321</td>
+                <td>Avenida 456, Ciudad</td>
+                <td>
+                    <button class="btn btn-warning btn-sm">Editar</button>
+                    <button class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock contenido %}
