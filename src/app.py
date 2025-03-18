@@ -1,6 +1,19 @@
 from flask import Flask, render_template
+from src. models import Base, engine 
+from src.models.productos import Productos
+from src.models.categorias import categorias
+from src.models.usuarios import Usuarios
+from src.models.roles import roles
+from src.models.clientes import Clientes
+from src.models.tipos import Tipos  
+from src.models.facturas import Facturas 
+from src.models.detalle_facturas import detalle_facturas
 
-app = Flask(__name__)
+app = Flask(__name__)  
+app.secret_key = "mi llaveria"  
+app.debug = True
+
+Base.metadata.create_all(engine)
 
 @app.route('/')
 def index():
