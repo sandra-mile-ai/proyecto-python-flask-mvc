@@ -1,46 +1,30 @@
 {% extends 'layout.html' %}
 
 {% block contenido %}
-<div class="container mt-4">
-    <h2 class="text-center">lista de Producto</h2>
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Valor Unitario</th>      
-                <th scope="col">Unidad Medida</th>   
-                <th scope="col">Cantidad en Stock</th>      
-                <th scope="col">Categoría</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Producto A</td>
-                <td>$10.00</td>
-                <td>Unidad</td>
-                <td>50</td>
-                <td>Alimentos</td>
-                <td>
-                    <button class="btn btn-warning btn-sm">Editar</button>
-                    <button class="btn btn-danger btn-sm">Eliminar</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Producto B</td>
-                <td>$20.50</td>
-                <td>Litros</td>
-                <td>30</td>
-                <td>Bebidas</td>
-                <td>
-                    <button class="btn btn-warning btn-sm">Editar</button>
-                    <button class="btn btn-danger btn-sm">Eliminar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-{% endblock contenido %}
+<table class="table">
+ <thead class="thead-dark">
+   <tr>          
+        <th scope="col">ID</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Valor Unitario</th>      
+        <th scope="col">Unidad Medida</th>   
+        <th scope="col">Cantidad en Stock</th>      
+        <th scope="col">Categoría</th>
+   </tr>
+ </thead>
+ <tbody> 
+    {% for producto in productos %}
+    <tr>
+        <th scope="row">{{ producto.id_producto }}</th> 
+        <td>{{ producto.descripcion }}</td>
+        <td>{{ producto.valor_unitario }}</td>
+        <td>{{ producto.unidad_medida }}</td>
+        <td>{{ producto.cantidad_stock }}</td>
+        <td>{{  producto.categoria }}</td>
+    </td>
+   </td>
+  </tr> 
+    {% endfor %}
+ </tbody>
+</table>
+{% endblock contenido %} 

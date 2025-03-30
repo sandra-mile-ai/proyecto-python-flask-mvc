@@ -8,3 +8,7 @@ class Categorias(Base):
 
     def __init__(self, categoria):
         self.categoria = categoria 
+
+    def obtener_categorias():
+        categorias = session.query(Categorias).all()
+        return categorias 
