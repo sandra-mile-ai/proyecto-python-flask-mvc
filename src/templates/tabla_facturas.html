@@ -1,45 +1,35 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 
-{% block contenido %}
+{% block title %}Listado de Facturas{% endblock %}
+
+{% block content %}
 <div class="container mt-4">
-    <h2 class="text-center">Lista de Facturas</h2>
-    <table class="table table-bordered">
-        <thead class="thead-dark">
+    <h2 class="mb-4">Listado de Facturas</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Cliente</th>      
-                <th scope="col">Vendedor</th>   
-                <th scope="col">Total</th>      
-                <th scope="col">Acciones</th>
+                <th>ID</th>
+                <th>ID Cliente</th>
+                <th>ID Usuario</th>
+                <th>Fecha</th>
+                <th>Total (€)</th>
             </tr>
         </thead>
         <tbody>
+            {% for factura in facturas %}
             <tr>
-                <th scope="row">1</th>
-                <td>2025-03-02</td>
-                <td>Juan Pérez</td>
-                <td>Pedro Gómez</td>
-                <td>$150.00</td>
-                <td>
-                    <button class="btn btn-info btn-sm">Ver</button>
-                    <button class="btn btn-warning btn-sm">Editar</button>
-                    <button class="btn btn-danger btn-sm">Eliminar</button>
-                </td>
+                <td>{{ factura.id }}</td>
+                <td>{{ factura.cliente_id }}</td>
+                <td>{{ factura.usuario_id }}</td>
+                <td>{{ factura.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+                <td>{{ "{:.2f}".format(factura.total) }}</td>
             </tr>
+            {% else %}
             <tr>
-                <th scope="row">2</th>
-                <td>2025-03-01</td>
-                <td>Ana López</td>
-                <td>María Sánchez</td>
-                <td>$250.75</td>
-                <td>
-                    <button class="btn btn-info btn-sm">Ver</button>
-                    <button class="btn btn-warning btn-sm">Editar</button>
-                    <button class="btn btn-danger btn-sm">Eliminar</button>
-                </td>
+                <td colspan="5" class="text-center">No hay facturas registradas.</td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
-{% endblock contenido %}
+{% endblock %}

@@ -2,7 +2,7 @@ from src.app import app
 from src.models import session
 from flask import render_template, request, redirect, url_for, jsonify
 from flask_controller import FlaskController
-from src.models.clientes import Clientes
+from src.models.clientes import Clientes 
 from src.models.tipos import Tipos
 
 class ClienteController(FlaskController):
@@ -11,7 +11,7 @@ class ClienteController(FlaskController):
         if request.method == 'POST':
             try:
                 nombre = request.form.get('nombre')
-                email = request.form.get('email')
+                email = request.form.get('email') 
                 telefono = request.form.get('telefono')
                 direccion = request.form.get('direccion')
                 tipo_id = request.form.get('tipos')

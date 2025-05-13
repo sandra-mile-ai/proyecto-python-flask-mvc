@@ -1,9 +1,9 @@
- {% extends 'layout.html' %}
+{% extends 'layout.html' %}
 
-{% block titulo %}Crear Cliente{% endblock %}
+{% block titulo %}Crear usuario{% endblock %}
 
 {% block contenido %}
-    <form action="{{ url_for('crear_cliente') }}" method="POST">
+    <form action="{{ url_for('crear_usuario') }}" method="POST">
         <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -25,16 +25,16 @@
         </div>
 
         <div class="form-group">
-            <label for="tipos">tipo:</label> 
-            <select class="form-control" name="tipos" required>
-                <option value="">Seleccione...</option>
-                {% for tipo in tipos %}
-                <option value="{{ tipo.id }}">{{ tipo.nombre}}</option>
-                {% endfor %}
-            </select>
-        </div>
+          <label for="roles">Rol:</label> 
+          <select class="form-control" name="roles" required>
+              <option value="">Seleccione...</option>
+              {% for rol in roles %}
+              <option value="{{ rol.id }}">{{ rol.rol }}</option>
+              {% endfor %}
+          </select>
+      </div>      
 
-        <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
-{% endblock %} 
+{% endblock %}  

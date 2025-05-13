@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from src.models import Base
 
-class detalle_facturas(Base):
+class Detalle_Facturas(Base):
     __tablename__ = 'detalle_facturas'
 
     id = Column(Integer, primary_key=True)
@@ -12,14 +12,14 @@ class detalle_facturas(Base):
     precio_unitario = Column(Float, nullable=False)
     subtotal = Column(Float, nullable=False)
 
-    factura = relationship('factura', back_populates='detalles')
+    factura = relationship('Facturas', back_populates='detalles')
 
     def __init__(self, factura_id, producto_id, cantidad, precio_unitario):
         self.factura_id = factura_id
         self.producto_id = producto_id
         self.cantidad = cantidad
         self.precio_unitario = precio_unitario
-        self.subtotal = cantidad * precio_unitario 
+        self.subtotal = cantidad * precio_unitario
 
     def __repr__(self):
         return f'<detalle_factura {self.id} - Factura {self.factura_id} - Producto {self.producto_id} - Cantidad {self.cantidad} - Subtotal {self.subtotal}>'

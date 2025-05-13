@@ -8,16 +8,17 @@ class Facturas(Base):
 
     id = Column(Integer, primary_key=True)
     cliente_id = Column(Integer, ForeignKey('clientes.id'), nullable=False)
-    vendedor_id = Column(Integer, ForeignKey('usuarios.id'), nullable=False)
+    usuario_id = Column(Integer, ForeignKey('usuarios.id_usuario'), nullable=False)
     fecha = Column(DateTime, default=datetime.utcnow)
     total = Column(Float, nullable=False)
+    
+    vendedor = relationship('Usuarios', back_populates='facturas')
+    detalles = relationship('Detalle_Facturas', back_populates='factura')
 
-    vendedor = relationship('Usuario', back_populates='facturas')
-
-    def __init__(self, cliente_id, vendedor_id, total):
+    def __init__(self, cliente_id, usuario_id, total):
         self.cliente_id = cliente_id
-        self.vendedor_id = vendedor_id
+        self.usuario_id = usuario_id  
         self.total = total
 
     def __repr__(self):
-        return f'<Factura {self.id} - Cliente {self.cliente_id} - Vendedor {self.vendedor_id} - Total {self.total}>'
+        return f'<Factura {self.id} - Cliente {self.cliente_id} - Usuario {self.usuario_id} - fecha {self.fecha} - Total {self.total}>'
